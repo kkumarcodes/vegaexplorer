@@ -1,0 +1,46 @@
+@import "../../styles/helpers";
+
+.root {
+  :global {
+    
+    .nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .input-group-text {
+      border-radius: 0px;
+      border-bottom-right-radius: 0.25rem;
+      border-top-right-radius: 0.25rem;
+    }
+
+    .input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+      margin-left: -1px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      padding: 0 10px;
+    }
+  }
+  border-bottom: 1px solid #e7eaf3;
+}
+
+
+.dropdownProfileItem {
+  display: flex;
+  &:hover {
+    svg {
+      path {
+        fill: $default;
+        stroke: $default;
+      }
+    }
+  }
+}
+
