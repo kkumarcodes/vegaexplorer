@@ -12,7 +12,7 @@ import useExplore from "../../hooks/useExplore";
 
 const PartyPage = () => {
   const { slug } = useParams();
-  const [party, setParty] = useRecoilState(Party);
+  const [party] = useRecoilState(Party);
   const useExploreAction = useExplore();
   useEffect(() => {
     if (slug) {
@@ -29,51 +29,53 @@ const PartyPage = () => {
           <h2>Accounts</h2>
           <ul>
             {party.accounts.map((a) => {
-              <Account account={a} positions={party.positions} />;
+              return <Account account={a} positions={party.positions} />;
             })}
           </ul>
           <h2>Recent orders</h2>
           <ul>
             {party.orders.map((or) => {
-              <li>
-                <OrderLink id={or.id} short={true} />:
-                {or.remaining === 0 ? (
-                  <>
-                    <s>
-                      {or.side} in <MarketLink id={or.market.id} />
-                    </s>
-                    : {or.size} @{" "}
-                    <PriceByMarket marketId={or.market.id} price={or.price} />
-                  </>
-                ) : or.remaining === or.size ? (
-                  <>
-                    <b>
-                      {or.side} in <MarketLink id={or.market.id} />
-                    </b>
-                    : {or.size} @{" "}
-                    <PriceByMarket marketId={or.market.id} price={or.price} />
-                  </>
-                ) : or.remaining !== "0" ? (
-                  <>
-                    <b>
-                      {or.side} in <MarketLink id={or.market.id} />
-                    </b>
-                    : {or.size} @{" "}
-                    <PriceByMarket marketId={or.market.id} price={or.price} />
-                    <i>(remaining: {or.remaining})</i>
-                  </>
-                ) : (
-                  <>
-                    <s>
-                      {or.side} in <MarketLink id={or.market.id} />
-                    </s>
-                    : {or.size} @{" "}
-                    <PriceByMarket marketId={or.market.id} price={or.price} />{" "}
-                    (filled)
-                  </>
-                )}
-                in <BlockLink id={or.id} />
-              </li>;
+              return (
+                <li>
+                  <OrderLink id={or.id} short={true} />:
+                  {or.remaining === 0 ? (
+                    <>
+                      <s>
+                        {or.side} in <MarketLink id={or.market.id} />
+                      </s>
+                      : {or.size} @{" "}
+                      <PriceByMarket marketId={or.market.id} price={or.price} />
+                    </>
+                  ) : or.remaining === or.size ? (
+                    <>
+                      <b>
+                        {or.side} in <MarketLink id={or.market.id} />
+                      </b>
+                      : {or.size} @{" "}
+                      <PriceByMarket marketId={or.market.id} price={or.price} />
+                    </>
+                  ) : or.remaining !== "0" ? (
+                    <>
+                      <b>
+                        {or.side} in <MarketLink id={or.market.id} />
+                      </b>
+                      : {or.size} @{" "}
+                      <PriceByMarket marketId={or.market.id} price={or.price} />
+                      <i>(remaining: {or.remaining})</i>
+                    </>
+                  ) : (
+                    <>
+                      <s>
+                        {or.side} in <MarketLink id={or.market.id} />
+                      </s>
+                      : {or.size} @{" "}
+                      <PriceByMarket marketId={or.market.id} price={or.price} />{" "}
+                      (filled)
+                    </>
+                  )}
+                  in <BlockLink id={or.id} />
+                </li>
+              );
             })}
           </ul>
         </>

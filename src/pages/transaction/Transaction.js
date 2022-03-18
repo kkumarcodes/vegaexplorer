@@ -7,7 +7,7 @@ import useExplore from "../../hooks/useExplore";
 
 const Transaction = () => {
   const { slug } = useParams();
-  const [tx, setTx] = useRecoilState(Txs);
+  const [tx,] = useRecoilState(Txs);
   const useExploreAction = useExplore();
 
   useEffect(() => {

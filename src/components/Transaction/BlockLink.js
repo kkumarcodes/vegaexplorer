@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { NavLink } from "react-router-dom";
 
 const BlockLink = ({ id }) => {
 
@@ -11,7 +12,7 @@ const BlockLink = ({ id }) => {
   } else {
     block = id;
   }
-  return <>{block && <a href="/blocks/{block}">{block}</a>}</>;
+  return <>{block && <NavLink to={`/tx/blocks/${block}`}>{block}</NavLink>}</>;
 };
 
 export default BlockLink;

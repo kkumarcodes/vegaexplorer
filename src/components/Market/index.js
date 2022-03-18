@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 import { markets } from "../../store";
 import TwoColumnData from "../Transaction/TwoColumnData"
 const Market = ({ id }) => {
-  const [marketData, setMarketData] = useRecoilState(markets);
+  const [marketData,] = useRecoilState(markets);
   const [market, setMarket] = useState();
 
   useEffect(() => {
@@ -13,7 +13,7 @@ const Market = ({ id }) => {
         setMarket(_market[0]);
       }
     }
-  }, [id]);
+  }, [id, marketData]);
   return (
     <div>
       {market ? (

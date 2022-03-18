@@ -10,8 +10,8 @@ import Transaction from "../../components/Transaction";
 import { tendermintUrl } from "../../config";
 const BlockDetail = () => {
   const { slug } = useParams();
-  const [blocks, setBlocks] = useRecoilState(Blocks);
-  const [block, setBlock] = useRecoilState(Block);
+  const [blocks] = useRecoilState(Blocks);
+  const [block] = useRecoilState(Block);
   const useExploreAction = useExplore();
   let history = useHistory();
 
@@ -28,20 +28,23 @@ const BlockDetail = () => {
     }
   }, [blocks, slug]);
 
-  console.log(blocks, "===blocks===");
-  console.log(block, "===block===");
   return (
     <>
-    <ButtonGroup>
-  <Button
-  onClick={() => history.push(`/tx/blocks/${Number(slug) - 1}`)}>
-  Previous block
-  </Button>
-  <Button
-  onClick={() => history.push(`/tx/blocks/${Number(slug) - 1}`)}>
-  Next block
-  </Button>
-</ButtonGroup>
+      <div className="d-flex justify-content-end">
+        <ButtonGroup size="sm">
+          <Button
+            onClick={() => history.push(`/tx/blocks/${Number(slug) - 1}`)}
+          >
+            Previous
+          </Button>
+          <Button
+            onClick={() => history.push(`/tx/blocks/${Number(slug) - 1}`)}
+          >
+            Next
+          </Button>
+        </ButtonGroup>
+      </div>
+
       <h1>
         <Hash text={`Block height ${slug}`} />
       </h1>

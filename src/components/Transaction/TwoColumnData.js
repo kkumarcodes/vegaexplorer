@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Card, CardBody, Table, CardTitle } from "reactstrap";
+import React from "react";
+import { Table } from "reactstrap";
 import PartyLink from "./PartyLink";
 import ValidatorLink from "./ValidatorLink";
 import BlockLink from "./BlockLink";
@@ -42,7 +42,7 @@ const TwoColumnData = ({ rows }) => {
                         marketId={row.marketId}
                       />
                     ) : row.type === "image" ? (
-                      <img src={row.value} width="60" height="60" />
+                      <img src={row.value} width="60" height="60" alt=""/>
                     ) : typeof row.value === "number" ||
                       typeof row.value === "string" ? (
                       row.value

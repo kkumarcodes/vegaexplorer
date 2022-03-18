@@ -6,7 +6,7 @@ import { RecoilRoot } from "recoil";
 
 // -- Custom Components
 import LayoutComponent from "./components/Layout/Layout";
-
+import Error from "./pages/error"
 // -- Third Party Libs
 import { ToastContainer } from "react-toastify";
 
@@ -23,6 +23,10 @@ const App = (props) => {
           <Route
             path="/tx"
             component={LayoutComponent}
+          />
+          <Route
+            path="/error"
+            component={Error}
           />
           <Route
             path="*"

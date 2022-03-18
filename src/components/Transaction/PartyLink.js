@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { NavLink } from "react-router-dom";
 import Hash from "./Hash";
+
 const PartyLink = ({ id }) => {
 
   let icon = "";
@@ -11,10 +13,10 @@ const PartyLink = ({ id }) => {
       {id.length > 15 ? (
         <Hash text={id} href={`/party/${id}`} />
       ) : (
-        <a href={`/tx/party/${id}`}>
+        <NavLink to={`/tx/party/${id}`}>
           {icon}
           {id}
-        </a>
+        </NavLink>
       )}
     </>
   );

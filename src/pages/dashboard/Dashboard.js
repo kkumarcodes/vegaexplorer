@@ -2,13 +2,13 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Card, CardBody, CardTitle } from "reactstrap";
 import { useRecoilState } from "recoil";
-import { Blocks, Block } from "../../store";
+import { Block } from "../../store";
 import Transaction from '../../components/Transaction';
 
 const Dashboard = () => {
   const { id } = useParams();
-  const [data, setData] = useRecoilState(Block);
-  const [currentId, setCurrentId] = useRecoilState(Block);
+  const [data,] = useRecoilState(Block);
+  const [, setCurrentId] = useRecoilState(Block);
 
   useEffect(() => {
     setCurrentId(id);

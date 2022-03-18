@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { NavLink } from "react-router-dom";
 
 const ValidatorLink = ({ id }) => {
   return (
     <>
-      <a href="/tx/network/">{id}</a>
+      <NavLink to="/tx/network/">{id}</NavLink>
     </>
   );
 };

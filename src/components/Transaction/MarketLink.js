@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { markets } from "../../store";
 const MarketLink = ({ id }) => {
-  const [marketData, setMarketData] = useRecoilState(markets);
+  const [marketData,] = useRecoilState(markets);
 
   const [market, setMarket] = useState();
 
@@ -20,7 +21,7 @@ const MarketLink = ({ id }) => {
       {!market ? (
         "Loading..."
       ) : (
-        <a href="/tx/trading/markets/{id}">{market.name}</a>
+        <NavLink to={`/tx/trading/markets/${id}`}>{market.name}</NavLink>
       )}
     </>
   );

@@ -1,6 +1,6 @@
 // -- React and related libs
 import React from "react";
-import { Switch, Route, Redirect } from "react-router";
+import { Switch, Route } from "react-router";
 
 // -- Custom Components
 import Header from "../Header/Header";

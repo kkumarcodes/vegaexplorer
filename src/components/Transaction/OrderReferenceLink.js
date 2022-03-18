@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { NavLink } from "react-router-dom";
 
 const OrderReferenceLink = ({ reference }) => {
   return (
     <>
-      <a href="/tx/trading/orders/byReference/{reference}">{reference}</a>
+      <NavLink to={`/tx/trading/orders/byReference/${reference}`}>{reference}</NavLink>
     </>
   );
 };

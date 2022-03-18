@@ -6,7 +6,7 @@ import { Validators } from "../../store";
 import useExplore from "../../hooks/useExplore";
 
 const Network = () => {
-  const [validators, setValidators] = useRecoilState(Validators);
+  const [validators,] = useRecoilState(Validators);
   const useExploreAction = useExplore();
 
   useEffect(() => {

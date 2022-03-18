@@ -6,7 +6,7 @@ import Market from "../../../components/Market"
 import Account from "../../../components/Account"
 const Markets = () => {
   const { id } = useParams();
-  const [marketData, setMarketData] = useRecoilState(markets);
+  const [marketData,] = useRecoilState(markets);
   const [market, setMarket] = useState();
 
   useEffect(() => {

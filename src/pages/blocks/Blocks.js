@@ -1,17 +1,18 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { Card, CardBody, CardTitle, Table } from "reactstrap";
 import { useRecoilState } from "recoil";
-import { Blocks, searchBlockID } from "../../store";
+import { NavLink } from "react-router-dom";
+import { Blocks } from "../../store";
 import useExplore from "../../hooks/useExplore";
 import Hash from "../../components/Transaction/Hash";
 
 const BlocksPage = () => {
-  const [blocks, setBlocks] = useRecoilState(Blocks);
+  const [blocks,] = useRecoilState(Blocks);
   const useExploreAction = useExplore();
 
   useEffect(() => {
-    useExploreAction.getBlockData();
+    if (useExploreAction)
+      useExploreAction.getBlockData();
   }, []);
 
   return (
@@ -22,16 +23,16 @@ const BlocksPage = () => {
           {blocks && blocks.blocks && (
             <tbody>
               {Object.keys(blocks.blocks)
-                .sort((a, b) => a - b)
+                .sort((a, b) => b - a)
                 .map((blockKey) => {
                   return (
                     <tr key={blockKey}>
                       <td>
-                        <a
-                          href={`blocks/${blocks.blocks[blockKey].header.height}`}
+                        <NavLink
+                          to={`blocks/${blocks.blocks[blockKey].header.height}`}
                         >
                           {blocks.blocks[blockKey].header.height}
-                        </a>
+                        </NavLink>
                       </td>
                       <td>
                         {blocks.blocks[blockKey].num_txs ? (

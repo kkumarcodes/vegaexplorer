@@ -40,7 +40,7 @@ const Header = (props) => {
       className={`${s.root} d-print-none`}
     >
       <div class="w-lg-auto">
-        <NavbarBrand href="/">Vega</NavbarBrand>
+        <NavbarBrand to="/">Vega</NavbarBrand>
         <div id="ethPrice">
           <Badge
             color="secondary"
@@ -79,7 +79,9 @@ const Header = (props) => {
             </InputGroup>
           </Form>
         </div>
+       
         <Collapse navbar>
+        { ' -> '}
           <Nav className="me-auto" navbar>
             <NavItem>
               <NavLink href="/">Home</NavLink>

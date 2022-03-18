@@ -4,7 +4,7 @@ import { useRecoilState } from "recoil";
 
 const PriceByMarket = ({ price, marketId }) => {
   const [market, setMarket] = useState();
-  const [marketData, setMarketData] = useRecoilState(markets);
+  const [marketData,] = useRecoilState(markets);
   useEffect(() => {
     if (marketId && marketData) {
       const _market = marketData[marketId]
@@ -35,7 +35,7 @@ const PriceByMarket = ({ price, marketId }) => {
 
   return (
     <>
-      {Number(price) === NaN
+      {isNaN(Number(price))
         ? "-"
         : market
         ? formatNumber(price, market.decimalPlaces)
