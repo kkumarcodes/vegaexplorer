@@ -1,23 +1,24 @@
 import React from "react";
 import { Table } from "reactstrap";
-import PartyLink from "./PartyLink";
-import ValidatorLink from "./ValidatorLink";
-import BlockLink from "./BlockLink";
-import Hash from "./Hash";
-import OrderLink from "./OrderLink";
-import OrderReferenceLink from "./OrderReferenceLink";
-import MarketLink from "./MarketLink";
-import PriceByMarket from "./PriceByMarket";
+import PartyLink from "../Transaction/PartyLink";
+import ValidatorLink from "../Transaction/ValidatorLink";
+import BlockLink from "../Transaction/BlockLink";
+import Hash from "../Transaction/Hash";
+import OrderLink from "../Transaction/OrderLink";
+import OrderReferenceLink from "../Transaction/OrderReferenceLink";
+import MarketLink from "../Transaction/MarketLink";
+import PriceByMarket from "../Transaction/PriceByMarket";
+import s from "./index.module.scss";
 
 const TwoColumnData = ({ rows }) => {
   return (
     <>
       {rows && (
-        <Table>
+        <Table className={s.root}>
           <tbody>
             {rows.map((row) => (
               <tr key={row.value}>
-                <td>{row.title.trim()}</td>
+                <th>{row.title.trim()}</th>
                 <td>
                   {row.value ? (
                     row.type === "party" ? (

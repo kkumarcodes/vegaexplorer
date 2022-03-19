@@ -7,12 +7,11 @@ import useExplore from "../../hooks/useExplore";
 import Hash from "../../components/Transaction/Hash";
 
 const BlocksPage = () => {
-  const [blocks,] = useRecoilState(Blocks);
+  const [blocks] = useRecoilState(Blocks);
   const useExploreAction = useExplore();
 
   useEffect(() => {
-    if (useExploreAction)
-      useExploreAction.getBlockData();
+    if (useExploreAction) useExploreAction.getBlockData();
   }, []);
 
   return (
@@ -20,7 +19,7 @@ const BlocksPage = () => {
       <CardBody>
         <CardTitle tag="h5">Recent blocks</CardTitle>
         <Table>
-          {blocks && blocks.blocks && (
+          {blocks && blocks.blocks ? (
             <tbody>
               {Object.keys(blocks.blocks)
                 .sort((a, b) => b - a)
@@ -52,6 +51,8 @@ const BlocksPage = () => {
                   );
                 })}
             </tbody>
+          ) : (
+            "Loading..."
           )}
         </Table>
       </CardBody>

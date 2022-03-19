@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { markets } from "../../store";
-import TwoColumnData from "../Transaction/TwoColumnData"
+import TwoColumnData from "../TwoColumnData"
 const Market = ({ id }) => {
   const [marketData,] = useRecoilState(markets);
   const [market, setMarket] = useState();
@@ -18,7 +18,7 @@ const Market = ({ id }) => {
     <div>
       {market ? (
         <div key={market.id}>
-          <h1>{market.name}</h1>
+          <h2>{market.name}</h2>
           <TwoColumnData
             rows={[
               { title: "ID", value: market.id },
@@ -62,7 +62,7 @@ const Market = ({ id }) => {
           />
         </div>
       ) : (
-        <h1>Loading {id}...</h1>
+        <h2>Loading {id}...</h2>
       )}
     </div>
   );

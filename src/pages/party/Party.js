@@ -24,7 +24,7 @@ const PartyPage = () => {
     <div>
       {party ? (
         <>
-          <h1>{party.id.length > 15 ? <Hash text={party.id} /> : party.id}</h1>
+          <h2>{party.id.length > 15 ? <Hash text={party.id} /> : party.id}</h2>
 
           <h2>Accounts</h2>
           <ul>
@@ -80,7 +80,7 @@ const PartyPage = () => {
           </ul>
         </>
       ) : (
-        <h1>Loading...</h1>
+        <h2>Loading...</h2>
       )}
     </div>
   ) : (

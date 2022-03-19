@@ -21,7 +21,7 @@ const MarketLink = ({ id }) => {
       {!market ? (
         "Loading..."
       ) : (
-        <NavLink to={`/tx/trading/markets/${id}`}>{market.name}</NavLink>
+        <NavLink to={`/tx/markets/${id}`}>{market.name}</NavLink>
       )}
     </>
   );

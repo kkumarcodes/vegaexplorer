@@ -45,26 +45,27 @@ const BlockDetail = () => {
         </ButtonGroup>
       </div>
 
-      <h1>
+      <h2>
         <Hash text={`Block height ${slug}`} />
-      </h1>
+      </h2>
 
-      <ul class="content">
+      <ul className="content">
         {blocks && blocks.blocks && (
           <>
             <BlockHeader block={blocks.blocks[slug]} />
             <hr />
           </>
         )}
-        {block &&
-          block.map(({ Type, PubKey, Command, TxHash }, i) => (
-            <Transaction
-              hash={TxHash}
-              tx={Command}
-              pubKey={PubKey}
-              type={Type}
-            />
-          ))}
+        {block
+          ? block.map(({ Type, PubKey, Command, TxHash }, i) => (
+              <Transaction
+                hash={TxHash}
+                tx={Command}
+                pubKey={PubKey}
+                type={Type}
+              />
+            ))
+          : "Loading..."}
       </ul>
     </>
   );

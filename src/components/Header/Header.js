@@ -39,7 +39,7 @@ const Header = (props) => {
       light
       className={`${s.root} d-print-none`}
     >
-      <div class="w-lg-auto">
+      <div className="w-lg-auto">
         <NavbarBrand to="/">Vega</NavbarBrand>
         <div id="ethPrice">
           <Badge
@@ -64,7 +64,7 @@ const Header = (props) => {
           <SVG name="menu" width="38" height="38" fill="#f00" />
         </Button>
       </div>
-      <div class="d-flex flex-column w-100">
+      <div className="d-flex flex-column w-100">
         <div id="form1">
           <Form className="d-none d-sm-block" inline onSubmit={handleSubmit}>
             <InputGroup>

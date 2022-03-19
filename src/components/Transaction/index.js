@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import TransactionType from "./TransactionType";
 import PriceByMarket from "./PriceByMarket";
 import MarketLink from "./MarketLink";
-import TwoColumnData from "./TwoColumnData";
+import TwoColumnData from "../TwoColumnData";
 
 
 const Transaction = ({ hash, tx, pubKey, type }) => {
@@ -20,7 +20,7 @@ const Transaction = ({ hash, tx, pubKey, type }) => {
   }, [tx]);
 
   return (
-    <details class={pubKey}>
+    <details className={pubKey}>
       <summary>
         {type === "OrderSubmission" ? (
           <>

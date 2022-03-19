@@ -6,7 +6,7 @@ import { Validators } from "../../store";
 import useExplore from "../../hooks/useExplore";
 
 const Network = () => {
-  const [validators,] = useRecoilState(Validators);
+  const [validators] = useRecoilState(Validators);
   const useExploreAction = useExplore();
 
   useEffect(() => {
@@ -17,8 +17,11 @@ const Network = () => {
     <Card>
       <CardBody>
         <CardTitle tag="h5">Network</CardTitle>
-        {validators && validators.peers && 
-          Object.keys(validators.peers).map((validatorAddress, i) => <Validator validator={validators.peers[validatorAddress]} />)}
+        {validators && validators.peers
+          ? Object.keys(validators.peers).map((validatorAddress, i) => (
+              <Validator key={validatorAddress} validator={validators.peers[validatorAddress]} />
+            ))
+          : "Loading..."}
       </CardBody>
     </Card>
   );

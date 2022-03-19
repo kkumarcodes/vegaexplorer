@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import TwoColumnData from "../Transaction/TwoColumnData";
+import TwoColumnData from "../TwoColumnData";
 const BlockHeader = ({ block }) => {
   const [rows, setRows] = React.useState([]);
   useEffect(() => {

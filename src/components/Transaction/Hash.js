@@ -5,17 +5,17 @@ const Hash = ({ text, href = false }) => {
   return (
     <>
       {text && (
-        <div class="hash-wrapper">
+        <div className="hash-wrapper">
           {text.length > 20 ? (
             href ? (
               <NavLink to={href}>
-                <span class="firstPart">{text}</span>
-                <span class="lastPart">{text.substr(-5)}</span>
+                <span className="firstPart">{text}</span>
+                <span className="lastPart">{text.substr(-5)}</span>
               </NavLink>
             ) : (
               <>
-                <span class="firstPart">{text}</span>
-                <span class="lastPart">{text.substr(-5)}</span>
+                <span className="firstPart">{text}</span>
+                <span className="lastPart">{text.substr(-5)}</span>
               </>
             )
           ) : (

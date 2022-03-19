@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
-import TwoColumnData from "./TwoColumnData";
+import TwoColumnData from "../TwoColumnData";
 
 const Validator = ({ validator }) => {
   const [rows, setRows] = React.useState([]);
   useEffect(() => {
     if (validator) {
-      console.log(validator, '====---')
       setRows([
         { title: "Name", value: validator.name },
         { title: "Avatar", value: validator.avatarUrl, type: "image" },

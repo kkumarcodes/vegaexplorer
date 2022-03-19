@@ -48,7 +48,6 @@ export default function useExplore() {
           data.blocks[block.header.height] = block;
         }
       });
-      console.log(data, "===block.header.height===");
       setBlocks(data);
     });
   }
@@ -110,7 +109,6 @@ export default function useExplore() {
           data.peers[validatorAddress] = aug;
         });
       }
-      console.log(data, "===");
       setValidators(data);
     });
   }

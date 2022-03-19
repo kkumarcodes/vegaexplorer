@@ -1,5 +1,5 @@
 import React from "react";
-import TwoColumnData from "../Transaction/TwoColumnData";
+import TwoColumnData from "../TwoColumnData";
 
 const MarginAccount = ({ rows }) => {
   return (
