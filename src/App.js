@@ -19,7 +19,7 @@ const App = (props) => {
       <ToastContainer />
       <BrowserRouter>
         <Switch>
-          <Route path="/" exact render={() => <Redirect to="/tx/blocks" />} />
+          <Route path="/" exact render={() => <Redirect to="/tx/dashboard" />} />
           <Route
             path="/tx"
             component={LayoutComponent}

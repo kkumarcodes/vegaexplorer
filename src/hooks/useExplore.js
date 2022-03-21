@@ -12,6 +12,7 @@ import {
   Trade,
   Assets,
   Asset,
+  Statistics,
 } from "../store";
 import { blockUrl, apiUrl, tendermintUrl } from "../config";
 export default function useExplore() {
@@ -28,6 +29,7 @@ export default function useExplore() {
   const setMarkets = useSetRecoilState(markets);
   const setTxs = useSetRecoilState(Txs);
   const setValidators = useSetRecoilState(Validators);
+  const setStatistics = useSetRecoilState(Statistics);
 
   return {
     getBlockByHeight,
@@ -40,6 +42,7 @@ export default function useExplore() {
     getTrade,
     getAsset,
     getAssets,
+    getStatistics,
   };
   function getBlockByHeight(body) {
     return fetchWrapper.post(blockUrl(), body).then((response) => {
@@ -410,6 +413,52 @@ export default function useExplore() {
       )
       .then((data) => {
         setAsset(data.data);
+      });
+  }
+
+  function getStatistics() {
+    return fetchWrapper
+      .post(
+        apiUrl("query"),
+        {
+          query: `query () {
+            statistics() {
+              blockHeight
+              backlogLength
+              totalPeers
+              genesisTime
+              currentTime
+              upTime
+              vegaTime
+              status
+              txPerBlock
+              averageTxBytes
+              averageOrdersPerBlock
+              tradesPerSecond
+              ordersPerSecond
+              totalMarkets
+              totalAmendOrder
+              totalCancelOrder
+              totalCancelOrder
+              totalOrders
+              totalTrades
+              appVersionHash
+              appVersion
+              chainVersion
+              blockDuration
+              chainId
+            }
+          }`,
+          variables: {
+          },
+        },
+        {
+          mode: "cors",
+          credentials: "omit",
+        }
+      )
+      .then((data) => {
+        setStatistics(data.data.statistics);
       });
   }
 }

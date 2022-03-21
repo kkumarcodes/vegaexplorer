@@ -32,7 +32,7 @@ const Layout = (props) => {
         <Header />
         <main className={s.content}>
             <Switch>
-              <Route path="/tx" exact component={Dashboard} />
+              <Route path="/tx/dashboard" exact component={Dashboard} />
               <Route path="/tx/blocks" exact component={Blocks} />
               <Route path="/tx/blocks/:slug" component={BlockDetail} />
               <Route path="/tx/transaction" exact component={Transaction} />

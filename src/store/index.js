@@ -54,3 +54,8 @@ export const Asset = atom({
   key: "Asset",
   default: null,
 });
+
+export const Statistics = atom({
+  key: "Statistics",
+  default: null,
+});
