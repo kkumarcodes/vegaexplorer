@@ -1,7 +1,16 @@
 import { useSetRecoilState } from "recoil";
 
 import useFetchWrapper from "./useFetchWrapper";
-import { Blocks, Block, markets, Txs, Validators, Party } from "../store";
+import {
+  Blocks,
+  Block,
+  markets,
+  Txs,
+  Validators,
+  Party,
+  Order,
+  Trade,
+} from "../store";
 import { blockUrl, apiUrl, tendermintUrl } from "../config";
 export default function useExplore() {
   // TODO:
@@ -10,6 +19,8 @@ export default function useExplore() {
   const setBlocks = useSetRecoilState(Blocks);
   const setBlock = useSetRecoilState(Block);
   const setParty = useSetRecoilState(Party);
+  const setOrder = useSetRecoilState(Order);
+  const setTrade = useSetRecoilState(Trade);
   const setMarkets = useSetRecoilState(markets);
   const setTxs = useSetRecoilState(Txs);
   const setValidators = useSetRecoilState(Validators);
@@ -21,6 +32,8 @@ export default function useExplore() {
     getValidators,
     getBlockData,
     getParty,
+    getOrder,
+    getTrade,
   };
   function getBlockByHeight(body) {
     return fetchWrapper.post(blockUrl(), body).then((response) => {
@@ -59,8 +72,65 @@ export default function useExplore() {
         {
           operationName: null,
           variables: {},
-          query:
-            "{\n  markets {\n    id\n    name \n tradableInstrument {\n      instrument {\n        id\n        code\n        name\n           metadata {\n          tags\n        }\n        }\n      marginCalculator {\n        scalingFactors {\n          searchLevel\n          initialMargin\n          collateralRelease\n        }\n      }\n    }\n    tradingMode       data {\n      markPrice\n      bestBidPrice, bestOfferPrice, midPrice, openInterest    }\n    decimalPlaces\n    accounts {\n      type\n      balance\n      asset { id symbol }\n    }\n    orders(last: 20) {\n      id\n    }\n  }\n}\n",
+          query: `
+            query ($id: ID) {
+              markets(id: $id) {
+                id
+                 name
+                fees {
+                  factors {
+                    makerFee
+                    infrastructureFee
+                    liquidityFee
+                  }
+                }
+                tradableInstrument {
+                  instrument {
+                    id
+                    code
+                    name
+                    metadata {
+                      tags
+                    }
+                  }
+                  marginCalculator {
+                    scalingFactors {
+                      searchLevel
+                      initialMargin
+                      collateralRelease
+                    }
+                  }
+                  
+                }
+                tradingMode 
+                data {
+                  markPrice
+                  bestBidPrice
+                  midPrice
+                  openInterest
+                  
+                }
+                decimalPlaces
+                accounts {
+                  type
+                  balance
+                  asset {
+                    id
+                    symbol
+                  }
+                  
+                }
+                orders(last: 20) {
+                  id
+                }
+                trades(last: 20) {
+                  id
+                }
+              }
+            }
+            
+              
+            `,
         },
         {
           mode: "cors",
@@ -130,6 +200,112 @@ export default function useExplore() {
       )
       .then((data) => {
         setParty(data.data);
+      });
+  }
+
+  function getOrder(id) {
+    return fetchWrapper
+      .post(
+        apiUrl("query"),
+        {
+          query: `query ($orderId: ID!) {
+              orderByID(orderId: $orderId) {
+                id
+                price
+                timeInForce 
+                side
+                market {
+                  id
+                }
+                size
+                remaining
+                party {
+                  id
+                }
+                createdAt
+                expiresAt
+                status
+                reference
+                trades {
+                  id
+                }
+                type
+                rejectionReason
+                version
+                updatedAt
+                peggedOrder {
+                  offset
+                  reference
+                }
+                liquidityProvision {
+                  id
+                }
+              }
+            }`,
+          variables: {
+            orderId: id,
+          },
+        },
+        {
+          mode: "cors",
+          credentials: "omit",
+        }
+      )
+      .then((data) => {
+        setOrder(data.data);
+      });
+  }
+
+  function getTrade(id) {
+    return fetchWrapper
+      .post(
+        apiUrl("query"),
+        {
+          query: `query ($orderId: ID!) {
+              orderByID(orderId: $orderId) {
+                id
+                price
+                timeInForce 
+                side
+                market {
+                  id
+                }
+                size
+                remaining
+                party {
+                  id
+                }
+                createdAt
+                expiresAt
+                status
+                reference
+                trades {
+                  id
+                }
+                type
+                rejectionReason
+                version
+                updatedAt
+                peggedOrder {
+                  offset
+                  reference
+                }
+                liquidityProvision {
+                  id
+                }
+              }
+            }`,
+          variables: {
+            orderId: id,
+          },
+        },
+        {
+          mode: "cors",
+          credentials: "omit",
+        }
+      )
+      .then((data) => {
+        setTrade(data.data);
       });
   }
 }

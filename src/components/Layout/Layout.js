@@ -16,7 +16,8 @@ const Network = lazy(() => import("../../pages/network/Network"));
 const Trading = lazy(() => import("../../pages/trading/Trading"));
 const Party = lazy(() => import("../../pages/party/Party"));
 const Market = lazy(() => import("../../pages/trading/markets/Markets"));
-
+const Order = lazy(() => import("../../pages/order/order"));
+const Trade = lazy(() => import("../../pages/trading/trade"));
 
 
 const renderLoader = () => <p>Loading</p>;
@@ -38,6 +39,8 @@ const Layout = (props) => {
               <Route path="/tx/trading" exact component={Trading} />
               <Route path="/tx/trading/:hash" component={Trading} />
               <Route path="/tx/markets/:id" component={Market} />
+              <Route path="/tx/order/:id" component={Order} />
+              <Route path="/tx/trade/:id" component={Trade} />
               <Route path="/tx/party/:hash" component={Party} />
               <Route path="/tx/party" exact component={Party} />
             </Switch>

@@ -28,7 +28,7 @@ const BlocksPage = () => {
                     <tr key={blockKey}>
                       <td>
                         <NavLink
-                          to={`blocks/${blocks.blocks[blockKey].header.height}`}
+                          to={`/tx/blocks/${blocks.blocks[blockKey].header.height}`}
                         >
                           {blocks.blocks[blockKey].header.height}
                         </NavLink>

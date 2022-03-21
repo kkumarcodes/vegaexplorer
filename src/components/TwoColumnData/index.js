@@ -57,6 +57,7 @@ const TwoColumnData = ({ rows }) => {
               </tr>
             ))}
           </tbody>
+          <input type="hidden" value="ser_berm" />
         </Table>
       )}
     </>

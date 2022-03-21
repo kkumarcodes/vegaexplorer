@@ -34,3 +34,13 @@ export const Party = atom({
   key: "Party",
   default: null,
 });
+
+export const Order = atom({
+  key: "Order",
+  default: null,
+});
+
+export const Trade = atom({
+  key: "Trade",
+  default: null,
+});
