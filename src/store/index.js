@@ -44,3 +44,13 @@ export const Trade = atom({
   key: "Trade",
   default: null,
 });
+
+export const Assets = atom({
+  key: "Assets",
+  default: null,
+});
+
+export const Asset = atom({
+  key: "Asset",
+  default: null,
+});

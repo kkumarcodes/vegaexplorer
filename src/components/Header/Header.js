@@ -98,6 +98,9 @@ const Header = (props) => {
             <NavItem>
               <NavLink href="/tx/party">Party</NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink href="/tx/assets">Assets</NavLink>
+            </NavItem>
           </Nav>
         </Collapse>
       </div>

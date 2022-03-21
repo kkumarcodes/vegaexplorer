@@ -10,6 +10,8 @@ import {
   Party,
   Order,
   Trade,
+  Assets,
+  Asset,
 } from "../store";
 import { blockUrl, apiUrl, tendermintUrl } from "../config";
 export default function useExplore() {
@@ -21,6 +23,8 @@ export default function useExplore() {
   const setParty = useSetRecoilState(Party);
   const setOrder = useSetRecoilState(Order);
   const setTrade = useSetRecoilState(Trade);
+  const setAssets = useSetRecoilState(Assets);
+  const setAsset = useSetRecoilState(Asset);
   const setMarkets = useSetRecoilState(markets);
   const setTxs = useSetRecoilState(Txs);
   const setValidators = useSetRecoilState(Validators);
@@ -34,6 +38,8 @@ export default function useExplore() {
     getParty,
     getOrder,
     getTrade,
+    getAsset,
+    getAssets,
   };
   function getBlockByHeight(body) {
     return fetchWrapper.post(blockUrl(), body).then((response) => {
@@ -306,6 +312,104 @@ export default function useExplore() {
       )
       .then((data) => {
         setTrade(data.data);
+      });
+  }
+
+  function getAssets(id) {
+    return fetchWrapper
+      .post(
+        apiUrl("query"),
+        {
+          query: `query () {
+            assets() {
+              id
+              name
+              symbol
+              totalSupply
+              decimals
+              quantum
+              infrastructureFeeAccount {
+                balance
+                asset {
+                  id
+                }
+                type
+                market {
+                  id
+                }
+              }
+              globalRewardPoolAccount {
+                balance
+                asset {
+                  id
+                }
+                type
+                market {
+                  id
+                }
+              }
+            }
+          }`,
+          variables: {
+            orderId: id,
+          },
+        },
+        {
+          mode: "cors",
+          credentials: "omit",
+        }
+      )
+      .then((data) => {
+        setAssets(data.data.assets);
+      });
+  }
+
+  function getAsset(id) {
+    return fetchWrapper
+      .post(
+        apiUrl("query"),
+        {
+          query: `query ($assetId: ID!) {
+            asset(assetId: $assetId) {
+              id
+              name
+              symbol
+              totalSupply
+              decimals
+              quantum
+              infrastructureFeeAccount {
+                balance
+                asset {
+                  id
+                }
+                type
+                market {
+                  id
+                }
+              }
+              globalRewardPoolAccount {
+                balance
+                asset {
+                  id
+                }
+                type
+                market {
+                  id
+                }
+              }
+            }
+          }`,
+          variables: {
+            assetId: id,
+          },
+        },
+        {
+          mode: "cors",
+          credentials: "omit",
+        }
+      )
+      .then((data) => {
+        setAsset(data.data);
       });
   }
 }
